@@ -1,5 +1,5 @@
 const secureCodeGroups = {
-  1: ["abc123", "def456", "ghi789", "jkl012", "mno345"],
+  1: ["dht123", "def456", "frc543", "jkl012", "ift934"],
   2: ["pqr678", "stu901", "vwx234", "yz567", "123abc"],
   3: ["456def", "789ghi", "012jkl", "345mno", "678pqr"],
   4: ["901stu", "234vwx", "567yz", "abc123", "def456"],
@@ -22,6 +22,15 @@ let currentGroupIndex = 1;
 let currentCodeIndex = 1;
 let resetTimeout;
 
+document.addEventListener("DOMContentLoaded", function () {
+  const inputElement = document.getElementById("secureCodeInput");
+  const checkButton = document.getElementById("checkButton");
+
+  inputElement.addEventListener("input", function () {
+    checkButton.disabled = inputElement.value.trim().length !== 6;
+  });
+});
+
 function checkSecureCode() {
   clearTimeout(resetTimeout); // Clear the previous timeout
 
@@ -32,11 +41,13 @@ function checkSecureCode() {
   const selectedGroupIndex = parseInt(groupSelectElement.value);
   const enteredCode = inputElement.value.trim();
 
+  // Validate text length
+
   if (selectedGroupIndex !== currentGroupIndex) {
     currentGroupIndex = selectedGroupIndex;
     if (!secureCodeGroups[currentGroupIndex]) {
       messageDisplayElement.textContent =
-        "Invalid team selection. Please choose a valid team.\nResetting in 10 seconds.";
+        "Invalid team selection. Please choose a valid team.\nResetting in 5 seconds.";
       messageDisplayElement.style.color = "red";
       inputElement.value = "";
       resetAfterDelay();
@@ -62,7 +73,9 @@ function checkSecureCode() {
       messageDisplayElement.style.color = "purple";
     }
   } else {
-    messageDisplayElement.textContent = `Incorrect code. Please enter the correct code in the correct order.\nResetting in 10 seconds.`;
+    messageDisplayElement.textContent = `Incorrect code. Please enter the correct code in the correct order.\nResetting in 5 seconds.`;
+    console.log(enteredCode, expectedCode);
+
     messageDisplayElement.style.color = "red";
     resetAfterDelay();
   }
@@ -73,20 +86,7 @@ function checkSecureCode() {
 
 function resetAfterDelay() {
   // Reset everything after 10 seconds
-  resetTimeout = setTimeout(() => {
-    currentGroupIndex = 1;
-    currentCodeIndex = 1;
-
-    const messageDisplayElement = document.getElementById("messageDisplay");
-    messageDisplayElement.textContent = "";
-    messageDisplayElement.style.color = "black";
-
-    const inputElement = document.getElementById("secureCodeInput");
-    inputElement.value = "";
-
-    const groupSelectElement = document.getElementById("groupSelect");
-    groupSelectElement.value = "1";
-
-    clearTimeout(resetTimeout); // Clear the timeout to avoid multiple resets
+  window.setTimeout(function () {
+    window.location.reload();
   }, 5000);
 }
