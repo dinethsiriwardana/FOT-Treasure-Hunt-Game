@@ -1,19 +1,19 @@
 const secureCodeGroups = {
   1: ["dht123", "def456", "frc543", "jkl012", "ift934"],
-  2: ["pqr678", "stu901", "vwx234", "yz567", "123abc"],
-  3: ["456def", "789ghi", "012jkl", "345mno", "678pqr"],
-  4: ["901stu", "234vwx", "567yz", "abc123", "def456"],
+  2: ["pqr678", "stu901", "vwx234", "ayz567", "123abc"],
+  3: ["456def", "789ghi", "102jkl", "345mno", "678pqr"],
+  4: ["901stu", "234vwx", "567ayz", "abc123", "def456"],
   5: ["ghi789", "jkl012", "mno345", "pqr678", "stu901"],
-  6: ["vwx234", "yz567", "123abc", "456def", "789ghi"],
+  6: ["vwx234", "yzq567", "123abc", "456def", "789ghi"],
   // Add more groups with unique codes as needed
 };
 
 const finishingMessages = {
-  1: "Congratulations! Team 1 has completed all codes.",
-  2: "Way to go! Team 2 has successfully entered all codes.",
-  3: "Fantastic! Team 3 has conquered all codes.",
-  4: "Well done! Team 4 has accomplished all codes.",
-  5: "Great job! Team 5 has finished all codes.",
+  1: "තිබුනත් ලස්සනට පෙනී කහටක්වත් නැ,\nමොනව උනත් පුටුටික නම් කියල වැඩක් නැ,\nඉල්ලන දේ කවදාවත් හම්බෙන්නෙත් නැ,\nබෝල්ට් ඇනයි ලොකු කතුරයි නොයිල්ලලත් බැ",
+  2: "සෙට් එක වල බැහැල ඉන්නේ,\nටිකක් උඩින් වල තියෙන්නේ,\nවල ඇතුළෙයි මාළු ඉන්නේ,\nමාළු එක්ක බඩු තියෙන්නේ",
+  3: "Follow the current to where it's spun, a place thay shares power with everyone. In circuits it flows, distributing might, the heartbeat of knowledge, a guide light.",
+  4: "යමුද යදම් බිද අපි මිහිර සොයා,\nමොනව තිබුනත් ඔක්කොම අපෙ බඩට තමා,\nපරනයි නමුත් ඉල්ලන්නම් ලැජ්ජ නොයා,\nPrintout  ටුයි බෝල්ට් ඇනයි දෙන්න මෙයා",
+  5: "අළුතින් දැම්මා මැශිමක් ගහන්නම,\nඋදේ ඉදන් රෑ වෙනකල් ඇරලාදා,\nපැත්තක් 7යි දෙපසම 9යි දැනට,\nඅයියේ අපිට චිකන් ටිකක් දෙනවාද",
   6: "Hooray! Team 6 has successfully entered all codes.",
   // Add more finishing messages as needed
 };
@@ -39,7 +39,7 @@ function checkSecureCode() {
   const messageDisplayElement = document.getElementById("messageDisplay");
 
   const selectedGroupIndex = parseInt(groupSelectElement.value);
-  const enteredCode = inputElement.value.trim();
+  const enteredCode = inputElement.value.trim().toLowerCase(); // Convert to lowercase
 
   // Validate text length
 
@@ -69,7 +69,8 @@ function checkSecureCode() {
     currentCodeIndex++;
 
     if (currentCodeIndex > groupCodes.length) {
-      messageDisplayElement.textContent = finishingMessages[currentGroupIndex];
+      messageDisplayElement.textContent =
+        "හම්බෝ ඇති යන්තම්,හොයාගන්න මාව,ලස්සනම වැවේ,වතුරේ නොගෑ​වී";
       messageDisplayElement.style.color = "purple";
     }
   } else {
