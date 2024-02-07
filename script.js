@@ -70,7 +70,7 @@ function checkSecureCode() {
 
     if (currentCodeIndex > groupCodes.length) {
       messageDisplayElement.textContent =
-        "හම්බෝ ඇති යන්තම්,හොයාගන්න මාව,ලස්සනම වැවේ,වතුරේ නොගෑ​වී";
+        "හම්බෝ ඇති යන්තම්,\nහොයාගන්න මාව,\nලස්සනම වැවේ,\nවතුර ඇතුලෙ";
       messageDisplayElement.style.color = "purple";
     }
   } else {
